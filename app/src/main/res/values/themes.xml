@@ -1,0 +1,48 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.DispositivosMoviles" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.DispositivosMoviles" parent="Base.Theme.DispositivosMoviles">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/font_color_dm</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="textTitle">
+        <item name="android:fontFamily">@font/satisfy</item>
+        <item name="android:textColor">@color/title_color_dm</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ButtonsGeneral" parent="Widget.Material3.Button">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:backgroundTint">#A1CD84</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="ButtonsCancel" parent="ButtonsGeneral">
+        <item name="android:backgroundTint">@color/tomato</item>
+    </style>
+
+    <style name="search">
+        <item name="android:backgroundTint">@color/title_color_dm</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="button_ingreso" parent="Widget.Material3.Button">
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">7dp</item>
+    </style>
+
+    <style name="button_redes" parent="Widget.Material3.Button">
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
+</resources>
