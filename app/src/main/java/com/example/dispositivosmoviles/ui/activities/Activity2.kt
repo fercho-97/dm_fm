@@ -4,8 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.compose.material3.Snackbar
+import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.Activity2Binding
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.snackbar.Snackbar
 
 class Activity2 : AppCompatActivity() {
 
@@ -24,15 +28,50 @@ class Activity2 : AppCompatActivity() {
         //extras.!! ->para confirmar que una dato nunca va hacer nulo
         //it?. -> para decir que un dato puede ser nulo
         var name:String=""
-        intent.extras.let {
-            name=it?.getString("var1")!!
+       // intent.extras.let {
+       //     name=it?.getString("var1")!!
 
-        }
+        //}
         Log.d("UCE","Entrando a start: ${name}")
         binding.textname.text="Bienvenido: "+name.toString()
         binding.boton1.setOnClickListener {
             var intent =Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.bar_inicio -> {
+                    // Respond to navigation item 1 click
+                    var sum = 0
+                    for (i in 1..10){
+                        sum++
+                    }
+
+                    Snackbar.make(binding.textname,"La suma es $sum", Snackbar.LENGTH_LONG
+                    ).show()
+                    true
+                }
+                R.id.bar_fav -> {
+                    // Respond to navigation item 2 click
+
+                    var sum = 0
+                    for (i in listOf(7,8,9,10)){
+                        sum+= i
+                    }
+
+                    Snackbar.make(binding.textname,"La suma es $sum", Snackbar.LENGTH_LONG
+                    ).show()
+                    true
+                }
+                R.id.bar_config ->{
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
+
+
 }

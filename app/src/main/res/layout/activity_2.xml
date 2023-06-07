@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.Activity2"
-    android:background="@color/tomato"
-    android:backgroundTint="@color/tomato"
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/texto1"
         style="@style/textTitle"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="left"
@@ -54,10 +55,10 @@
         style="@style/ButtonsGeneral"
         android:layout_width="104dp"
         android:layout_height="52dp"
-        android:layout_marginTop="464dp"
+        android:layout_marginTop="388dp"
         android:text="Inicio de 2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texto1"
         tools:ignore="MissingConstraints" />
@@ -85,5 +86,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texto2"
         tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

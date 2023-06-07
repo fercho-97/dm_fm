@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bar_inicio"
+        android:title="@string/inicio"
+        android:icon="@drawable/home_48"
+        android:enabled="true"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/bar_fav"
+        android:icon="@drawable/favorite_24"
+        android:title="@string/favorito"
+        android:enabled="true"
+        android:visible="true"/>
+    <item
+        android:id="@+id/bar_config"
+        android:icon="@drawable/settings_48"
+        android:title="@string/configuraciones"
+        android:enabled="true"
+        android:visible="true"/>
+</menu>

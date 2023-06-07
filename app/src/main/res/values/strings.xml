@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Dispositivos Moviles</string>
     <string name="saludo">Hola Mundo</string>
+    <string name="inicio">Inicio</string>
+    <string name="favorito">Favoritos</string>
+    <string name="configuraciones">Configuraciones</string>
+
 </resources>
