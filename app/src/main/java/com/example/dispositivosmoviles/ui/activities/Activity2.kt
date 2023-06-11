@@ -8,6 +8,7 @@ import androidx.compose.material3.Snackbar
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.Activity2Binding
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
+import com.example.dispositivosmoviles.fragment.FirstFragment
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.snackbar.Snackbar
 
@@ -43,13 +44,22 @@ class Activity2 : AppCompatActivity() {
             when(item.itemId) {
                 R.id.bar_inicio -> {
                     // Respond to navigation item 1 click
-                    var sum = 0
+
+                    /*var sum = 0
                     for (i in 1..10){
                         sum++
                     }
 
                     Snackbar.make(binding.textname,"La suma es $sum", Snackbar.LENGTH_LONG
                     ).show()
+
+                     */
+
+                    val frag = FirstFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.add(binding.frmContainer.id, frag)
+                    transaction.addToBackStack(null)
+                    transaction.commit()
                     true
                 }
                 R.id.bar_fav -> {
