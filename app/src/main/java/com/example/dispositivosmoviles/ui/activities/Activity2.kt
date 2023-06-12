@@ -9,6 +9,8 @@ import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.Activity2Binding
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.fragment.FirstFragment
+import com.example.dispositivosmoviles.fragment.SecondFragment
+import com.example.dispositivosmoviles.fragment.ThirdFragment
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.snackbar.Snackbar
 
@@ -57,14 +59,14 @@ class Activity2 : AppCompatActivity() {
 
                     val frag = FirstFragment()
                     val transaction = supportFragmentManager.beginTransaction()
-                    transaction.add(binding.frmContainer.id, frag)
+                    transaction.replace(binding.frmContainer.id, frag)
                     transaction.addToBackStack(null)
                     transaction.commit()
                     true
                 }
                 R.id.bar_fav -> {
                     // Respond to navigation item 2 click
-
+/*
                     var sum = 0
                     for (i in listOf(7,8,9,10)){
                         sum+= i
@@ -72,9 +74,26 @@ class Activity2 : AppCompatActivity() {
 
                     Snackbar.make(binding.textname,"La suma es $sum", Snackbar.LENGTH_LONG
                     ).show()
+
+ */
+                    val frag2 = SecondFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(binding.frmContainer.id, frag2)
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+
+
                     true
                 }
                 R.id.bar_config ->{
+
+                    val frag3 = ThirdFragment()
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(binding.frmContainer.id, frag3)
+                    transaction.addToBackStack(null)
+                    transaction.commit()
+
+
                     true
                 }
                 else -> false
