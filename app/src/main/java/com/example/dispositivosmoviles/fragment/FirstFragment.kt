@@ -32,6 +32,8 @@ class FirstFragment : Fragment() {
             layoutInflater, container,false
         )
 
+
+
         return binding.root
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_first, container, false)// se necesita 3 cosas ,
