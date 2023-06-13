@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.compose.material3.Snackbar
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.Activity2Binding
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.fragment.FirstFragment
 import com.example.dispositivosmoviles.fragment.SecondFragment
 import com.example.dispositivosmoviles.fragment.ThirdFragment
+import com.example.dispositivosmoviles.ui.utilities.FrgamentsManager
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.snackbar.Snackbar
 
@@ -56,12 +59,18 @@ class Activity2 : AppCompatActivity() {
                     ).show()
 
                      */
-
+/*
                     val frag = FirstFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(binding.frmContainer.id, frag)
                     transaction.addToBackStack(null)
                     transaction.commit()
+
+ */
+                    FrgamentsManager().replaceFrgament(supportFragmentManager,
+                        binding.frmContainer.id,
+                        FirstFragment()
+                    )
                     true
                 }
                 R.id.bar_fav -> {
@@ -76,12 +85,19 @@ class Activity2 : AppCompatActivity() {
                     ).show()
 
  */
+                    /*
                     val frag2 = SecondFragment()
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(binding.frmContainer.id, frag2)
                     transaction.addToBackStack(null)
                     transaction.commit()
 
+
+                     */
+                    FrgamentsManager().replaceFrgament(supportFragmentManager,
+                        binding.frmContainer.id,
+                        SecondFragment()
+                    )
 
                     true
                 }
@@ -101,6 +117,11 @@ class Activity2 : AppCompatActivity() {
         }
 
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
 
 
 }

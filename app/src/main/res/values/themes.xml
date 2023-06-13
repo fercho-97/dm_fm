@@ -40,6 +40,12 @@
         <item name="cornerRadius">7dp</item>
     </style>
 
+    <style name="ActiveIndicador" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:textStyle">bold</item>
+        <item name="android:color">@color/aqua</item>
+        <item name="cornerRadius">7dp</item>
+    </style>
+
     <style name="button_redes" parent="Widget.Material3.Button">
         <item name="android:textStyle">bold</item>
         <item name="cornerRadius">10dp</item>
