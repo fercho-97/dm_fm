@@ -9,21 +9,6 @@
     android:backgroundTint="@color/white"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/texto1"
-        style="@style/textTitle"
-        android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="Fast and Delicious Food activity 2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026"
-        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/boton2"
@@ -31,23 +16,22 @@
         android:layout_width="93dp"
         android:layout_height="50dp"
 
-        android:layout_marginTop="72dp"
         android:text="Bucar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toEndOf="@+id/imagen"
-        app:layout_constraintTop_toBottomOf="@+id/texto1"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="1dp" />
 
     <ImageView
         android:id="@+id/imagen"
         android:layout_width="51dp"
         android:layout_height="35dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:background="@color/blue"
         app:layout_constraintStart_toEndOf="@+id/texto2"
-        app:layout_constraintTop_toBottomOf="@+id/texto1"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/settings_24" />
 
     <Button
@@ -55,12 +39,12 @@
         style="@style/ButtonsGeneral"
         android:layout_width="104dp"
         android:layout_height="52dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginTop="20dp"
         android:text="Inicio de 2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto1"
+        app:layout_constraintTop_toBottomOf="@+id/frm_container"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -68,19 +52,17 @@
         style="@style/search"
         android:layout_width="213dp"
         android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginStart="28dp"
         android:background="@color/title_color_dm"
         android:text="Search..........................."
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto1" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="12dp"
         android:background="@color/black"
         android:text="Texto"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +72,9 @@
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        app:itemIconTint="@drawable/cualquiera"
         android:id="@+id/bottom_navigation"
+        app:itemActiveIndicatorStyle="@style/ActiveIndicador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -99,8 +83,8 @@
     <FrameLayout
         android:id="@+id/frm_container"
 
-        android:layout_width="409dp"
-        android:layout_height="167dp"
+        android:layout_width="410dp"
+        android:layout_height="515dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textname">

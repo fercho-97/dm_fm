@@ -10,6 +10,7 @@
     <color name="tomato">#FF9800</color>
     <color name="gray">#B3B0AB</color>
     <color name="red">#F4392B</color>
-    <color name="transparent">#00FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>}
+    <color name="skyblue">#78CEF4</color>
 
 </resources>
