@@ -10,21 +10,37 @@ import com.example.dispositivosmoviles.data.entities.MarvelChars
 import com.example.dispositivosmoviles.databinding.MarvelCharterBinding
 import com.squareup.picasso.Picasso
 
-class MarvelAdapters(private val items: List<MarvelChars>): RecyclerView.Adapter<MarvelAdapters.MarvelViewHolder>() {
+class MarvelAdapters(
+    private val items: List<MarvelChars>,
+    private var fnClick: (MarvelChars)-> Unit
+
+    ): RecyclerView.Adapter<MarvelAdapters.MarvelViewHolder>() {
 
     class MarvelViewHolder(view: View):RecyclerView.ViewHolder(view) {
 
         private val binding: MarvelCharterBinding = MarvelCharterBinding.bind(view)
 
-        fun render(item: MarvelChars){
+        fun render(item: MarvelChars, fnClick: (MarvelChars)-> Unit){
             binding.name.text = item.name
             binding.comic.text = item.comic
             Picasso.get().load(item.image).into(binding.imageMarvel)
 
+            /*
             binding.imageMarvel.setOnClickListener{
                 Snackbar.make(binding.imageMarvel,
                 item.name,
                 Snackbar.LENGTH_SHORT)
+
+             */
+/*
+            binding.imageMarvel.setOnClickListener{
+                fnClick(item)
+
+ */
+            itemView.setOnClickListener{
+                fnClick(item)
+
+
             }
 
 
@@ -45,7 +61,7 @@ class MarvelAdapters(private val items: List<MarvelChars>): RecyclerView.Adapter
     override fun onBindViewHolder(holder: MarvelAdapters.MarvelViewHolder, position: Int) {
        // TODO("Not yet implemented")
 
-        holder.render(items[position])
+        holder.render(items[position], fnClick)
     }
 
     override fun getItemCount(): Int =items.size
