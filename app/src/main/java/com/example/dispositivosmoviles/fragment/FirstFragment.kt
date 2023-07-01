@@ -2,6 +2,7 @@ package com.example.dispositivosmoviles.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.data.entities.MarvelChars
 import com.example.dispositivosmoviles.databinding.FragmentFirstBinding
+import com.example.dispositivosmoviles.logic.marvelLogic.MarvelComicLogic
 import com.example.dispositivosmoviles.logic.validator.jkanLogic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvelItem
 import com.example.dispositivosmoviles.ui.adapter.MarvelAdapters
@@ -31,7 +33,7 @@ class FirstFragment : Fragment() {
     // se debe poner igual viewbinding
 
 
-    private  lateinit var binding: FragmentFirstBinding
+    private lateinit var binding: FragmentFirstBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +41,7 @@ class FirstFragment : Fragment() {
     ): View? {
 
         binding = FragmentFirstBinding.inflate(
-            layoutInflater, container,false
+            layoutInflater, container, false
         )
 
         return binding.root
@@ -58,8 +60,10 @@ class FirstFragment : Fragment() {
         )
 
         val adapter =
-            ArrayAdapter<String>(requireActivity(),
-            R.layout.spinner_item_layaout, names)
+            ArrayAdapter<String>(
+                requireActivity(),
+                R.layout.spinner_item_layaout, names
+            )
         binding.spinner.adapter = adapter
         // binding.listview.adapter = adapter
 
@@ -72,29 +76,33 @@ class FirstFragment : Fragment() {
         }
 
 
-
-
-
-
     }
 
 
-    fun sendMarvelItem(item: MarvelChars){
+    fun sendMarvelItem(item: MarvelChars) {
+        /*
+                val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
+                i.putExtra("name", item)
+                startActivity(i)
 
+
+         */
         val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
         i.putExtra("name", item)
+        i.putExtra("comic", item)
+        i.putExtra("imagen", item)
         startActivity(i)
     }
 
-    fun chargeDataRV(){
+    fun chargeDataRV() {
 
-        lifecycleScope.launch(Dispatchers.IO){
+        lifecycleScope.launch(Dispatchers.IO) {
             val rvAdapter = MarvelAdapters(
-                JikanAnimeLogic().getAllAnimes()
+                MarvelComicLogic().getAllAnimes(name = "spider", 5)
             ) { sendMarvelItem(it) }
 
-            withContext(Dispatchers.Main){
-                with(binding.rcMarvelCharter){
+            withContext(Dispatchers.Main) {
+                with(binding.rcMarvelCharter) {
 
                     this.adapter = rvAdapter
                     this.layoutManager = LinearLayoutManager(
@@ -108,8 +116,6 @@ class FirstFragment : Fragment() {
 
 
         }
-
-
 
 
     }
