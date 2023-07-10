@@ -1,5 +1,8 @@
 package com.example.dispositivosmoviles.data.entities.marvel
 
+import com.example.dispositivosmoviles.data.entities.MarvelChars
+import com.example.dispositivosmoviles.data.entities.marvel.Result
+
 data class MarvelEntity(
     val attributionHTML: String,
     val attributionText: String,
@@ -8,4 +11,5 @@ data class MarvelEntity(
     val `data`: Data,
     val etag: String,
     val status: String
+
 )

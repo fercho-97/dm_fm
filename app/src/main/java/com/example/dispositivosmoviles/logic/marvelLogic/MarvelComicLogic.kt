@@ -4,40 +4,40 @@ import android.util.Log
 import com.example.dispositivosmoviles.data.connections.ApiConnection
 import com.example.dispositivosmoviles.data.endpoints.MarvelEndpoint
 import com.example.dispositivosmoviles.data.entities.MarvelChars
+import com.example.dispositivosmoviles.data.entities.marvel.getMarvelChars
 
 class MarvelComicLogic {
-    suspend fun getAllAnimes(name: String, limit: Int): List<MarvelChars> {
+    suspend fun getMarvelChars(name: String, limit: Int): ArrayList<MarvelChars> {
         var itemList = arrayListOf<MarvelChars>()
-        var call = ApiConnection.getService(
+
+        var response = ApiConnection.getService(
             ApiConnection.typeApi.Marvel,
             MarvelEndpoint::class.java
-        )
+        ).getCharactersStartWith(name, limit)
 
-        if (call != null) {
-            var response = call.getCharactersStartWith(name, limit)
-            Log.d("UCE", response.toString())
-            if (response.isSuccessful) {
-                response.body()!!.data.results.forEach {
-                    var commic: String = ""
-                    if (it.comics.items.size > 0) {
-                        commic = it.comics.items[0].name
-                    }
-                    val m = MarvelChars(
-                        it.id,
-                        it.name,
-                        commic,
-                        it.thumbnail.path + "." + it.thumbnail.extension
-                    )
-                    itemList.add(m)
-                }
-            } else {
-                Log.d("UCE", response.toString())
+        if (response.isSuccessful) {
+            response.body()!!.data.results.forEach {
+                val m = it.getMarvelChars()
+                itemList.add(m)
             }
         }
+        return itemList
+    }
 
+    suspend fun getAllMarvelChars(offset: Int, limit: Int): ArrayList<MarvelChars> {
+        var itemList = arrayListOf<MarvelChars>()
 
-        //Compruebo si la respuesta se ejecuto
+        var response = ApiConnection.getService(
+            ApiConnection.typeApi.Marvel,
+            MarvelEndpoint::class.java
+        ).getAllMarvelChars(offset, limit)
 
+        if (response.isSuccessful) {
+            response.body()!!.data.results.forEach {
+                val m = it.getMarvelChars()
+                itemList.add(m)
+            }
+        }
         return itemList
     }
 }

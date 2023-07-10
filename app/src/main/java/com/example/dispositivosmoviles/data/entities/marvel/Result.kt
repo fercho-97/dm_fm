@@ -1,5 +1,7 @@
 package com.example.dispositivosmoviles.data.entities.marvel
 
+import com.example.dispositivosmoviles.data.entities.MarvelChars
+
 data class Result(
     val comics: Comics,
     val description: String,
@@ -13,3 +15,18 @@ data class Result(
     val thumbnail: Thumbnail,
     val urls: List<Url>
 )
+
+fun Result.getMarvelChars(): MarvelChars {
+    var commic: String = ""
+    if (comics.items.size > 0) {
+        commic = comics.items[0].name
+    }
+
+    val a = MarvelChars(
+        id,
+        name,
+        commic,
+        thumbnail.path + "." + thumbnail.extension
+    )
+    return a
+}

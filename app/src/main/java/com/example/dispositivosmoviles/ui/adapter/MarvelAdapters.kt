@@ -11,16 +11,16 @@ import com.example.dispositivosmoviles.databinding.MarvelCharterBinding
 import com.squareup.picasso.Picasso
 
 class MarvelAdapters(
-    private val items: List<MarvelChars>,
-    private var fnClick: (MarvelChars)-> Unit
+    private var fnClick: (MarvelChars) -> Unit
 
-    ): RecyclerView.Adapter<MarvelAdapters.MarvelViewHolder>() {
+) : RecyclerView.Adapter<MarvelAdapters.MarvelViewHolder>() {
+    var items: List<MarvelChars> = listOf()
 
-    class MarvelViewHolder(view: View):RecyclerView.ViewHolder(view) {
+    class MarvelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val binding: MarvelCharterBinding = MarvelCharterBinding.bind(view)
 
-        fun render(item: MarvelChars, fnClick: (MarvelChars)-> Unit){
+        fun render(item: MarvelChars, fnClick: (MarvelChars) -> Unit) {
             binding.name.text = item.name
             binding.comic.text = item.comic
             Picasso.get().load(item.image).into(binding.imageMarvel)
@@ -32,18 +32,14 @@ class MarvelAdapters(
                 Snackbar.LENGTH_SHORT)
 
              */
-/*
-            binding.imageMarvel.setOnClickListener{
+            /*
+                        binding.imageMarvel.setOnClickListener{
+                            fnClick(item)
+             */
+            itemView.setOnClickListener {
                 fnClick(item)
-
- */
-            itemView.setOnClickListener{
-                fnClick(item)
-
 
             }
-
-
         }
     }
 
@@ -51,22 +47,38 @@ class MarvelAdapters(
         parent: ViewGroup,
         viewType: Int
     ): MarvelAdapters.MarvelViewHolder {
-     //   TODO("Not yet implemented")
+        //   TODO("Not yet implemented")
 
 
-        val inflater =LayoutInflater.from(parent.context)
+        val inflater = LayoutInflater.from(parent.context)
         return MarvelViewHolder(inflater.inflate(R.layout.marvel_charter, parent, false))
     }
 
     override fun onBindViewHolder(holder: MarvelAdapters.MarvelViewHolder, position: Int) {
-       // TODO("Not yet implemented")
+        // TODO("Not yet implemented")
 
         holder.render(items[position], fnClick)
     }
 
-    override fun getItemCount(): Int =items.size
-       // TODO("Not yet implemented")
+    override fun getItemCount(): Int = items.size
+    // TODO("Not yet implemented")
 
+    fun updateListItems(newItems: List<MarvelChars>) {
 
+        this.items = this.items.plus(newItems)
+        notifyDataSetChanged()
+
+    }
+
+    fun replaceListItems(newItems: List<MarvelChars>) {
+        this.items = newItems
+        notifyDataSetChanged()
+
+    }
+    fun replaceListAdapter(newItems: List<MarvelChars>) {
+        this.items = newItems
+        notifyDataSetChanged()
+
+    }
 
 }
