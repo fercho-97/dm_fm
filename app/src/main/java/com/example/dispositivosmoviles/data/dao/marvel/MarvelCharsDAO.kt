@@ -9,12 +9,13 @@ import com.example.dispositivosmoviles.data.entities.marvel.database.MarvelChars
 interface MarvelCharsDao {
 
     @Query("select * from MarvelCharsDB")
-    fun getAllCharacters() : List<MarvelCharsDao>
+    fun getAllCharacters() : List<MarvelCharsDB>
 
-    @Query("select * from MarvelCharsDB where id=:idd")
-    fun getOneCharacters(idd: Int) : List<MarvelCharsDB>
+    @Query("select * from MarvelCharsDB where id=:pk")
+    fun getOneCharacters(pk: Int) : MarvelCharsDB
 
     @Insert
-    fun insertMarvelChar(ch : List<MarvelCharsDao>)
+    fun insertMarvelChar(ch:List<MarvelCharsDB>)
+
 }
 

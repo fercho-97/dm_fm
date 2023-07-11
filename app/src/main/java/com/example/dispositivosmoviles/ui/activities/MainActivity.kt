@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.logic.validator.LoginValidator
+import com.example.dispositivosmoviles.ui.utilities.DispositivosMoviles
 
 //ESTA ES LA CAPA DE PRESENTACION
 class MainActivity : AppCompatActivity() {
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         initClass()
         initService()
+
+
     }
 
     override fun onDestroy() {

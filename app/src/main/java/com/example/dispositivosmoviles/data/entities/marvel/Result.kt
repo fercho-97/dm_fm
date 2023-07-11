@@ -17,8 +17,8 @@ data class Result(
 )
 
 fun Result.getMarvelChars(): MarvelChars {
-    var commic: String = ""
-    if (comics.items.size > 0) {
+    var commic: String = "No disponible"
+    if (comics.items.isNotEmpty()) {
         commic = comics.items[0].name
     }
 

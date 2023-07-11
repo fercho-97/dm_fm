@@ -20,6 +20,7 @@ import com.example.dispositivosmoviles.logic.marvelLogic.MarvelComicLogic
 import com.example.dispositivosmoviles.logic.validator.jkanLogic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvelItem
 import com.example.dispositivosmoviles.ui.adapter.MarvelAdapters
+import com.example.dispositivosmoviles.ui.utilities.DispositivosMoviles
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -42,7 +43,7 @@ class FirstFragment : Fragment() {
     private var marvelCharacterItems: MutableList<MarvelChars> = mutableListOf<MarvelChars>()
     private var rvAdapter: MarvelAdapters = MarvelAdapters { sendMarvelItem(it) }
 
-    private lateinit var marvelCharsItem: MutableList<MarvelChars>
+   // private lateinit var marvelCharsItem: MutableList<MarvelChars>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -81,11 +82,11 @@ class FirstFragment : Fragment() {
         binding.spinner.adapter = adapter
         // binding.listview.adapter = adapter
 
-        chargeDataRV()
+        chargeDataRVDB()
 
         binding.rvSwipe.setOnRefreshListener {
 
-            chargeDataRV()
+            chargeDataRVDB()
             binding.rvSwipe.isRefreshing = false
         }
 
@@ -102,9 +103,9 @@ class FirstFragment : Fragment() {
                         if ((v + p) >= t) {
 
                             lifecycleScope.launch(Dispatchers.IO) {
-                                val items = MarvelComicLogic().getAllMarvelChars(0,15)
+                                val items = MarvelComicLogic().getAllMarvelChars(0, 10)
 
-                                withContext(Dispatchers.Main){
+                                withContext(Dispatchers.Main) {
                                     rvAdapter.updateListItems(items)
 
                                 }
@@ -119,7 +120,7 @@ class FirstFragment : Fragment() {
 
         binding.txtfilter.addTextChangedListener { filterText ->
 
-            val newItems = marvelCharsItem.filter { items ->
+            val newItems = marvelCharacterItems.filter { items ->
                 items.name.contains(filterText.toString())
             }
 
@@ -183,38 +184,54 @@ class FirstFragment : Fragment() {
 
     private fun chargeDataRV() {
 
-
         lifecycleScope.launch(Dispatchers.Main) {
+
             marvelCharacterItems = withContext(Dispatchers.IO) {
-                return@withContext (MarvelComicLogic().getAllMarvelChars(
-                    0, 99
 
 
-                ))
+                return@withContext (MarvelComicLogic().getAllMarvelChars(0,15))
             } as MutableList<MarvelChars>
 
-            rvAdapter.items =
 
-
-                    //JikanAnimeLogic().getAllAnimes()
-                MarvelComicLogic().getAllMarvelChars(0, 10)
-
-            //ListItems().returnMarvelChar()
-            /*   JikanAnimeLogic().getAllAnimes()
-   ) { sendMarvelItems(it) }
-
-*/
-
-
+            rvAdapter.items = marvelCharacterItems
 
             binding.rcMarvelCharter.apply {
                 this.adapter = rvAdapter
-                //  this.layoutManager = lmanager
                 this.layoutManager = lmanager
             }
-
-
         }
     }
+
+
+
+    private fun chargeDataRVDB() {
+
+
+    lifecycleScope.launch(Dispatchers.Main) {
+
+        marvelCharacterItems = withContext(Dispatchers.IO) {
+
+            var marvelCharacterItems = MarvelComicLogic().getAllMarvelCharsDB().toMutableList()
+
+
+            if (marvelCharacterItems.isEmpty()) {
+
+                marvelCharacterItems = (MarvelComicLogic().getAllMarvelChars(0, 99))
+                MarvelComicLogic().insertMarvelCharstoDB(marvelCharacterItems)
+            }
+
+            return@withContext marvelCharacterItems
+        }
+
+        rvAdapter.items = marvelCharacterItems
+
+        binding.rcMarvelCharter.apply {
+            this.adapter = rvAdapter
+            this.layoutManager = lmanager
+        }
+    }
+
+
+}
 
 }
