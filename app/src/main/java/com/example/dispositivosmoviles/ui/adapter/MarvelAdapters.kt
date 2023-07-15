@@ -11,7 +11,8 @@ import com.example.dispositivosmoviles.databinding.MarvelCharterBinding
 import com.squareup.picasso.Picasso
 
 class MarvelAdapters(
-    private var fnClick: (MarvelChars) -> Unit
+    private var fnClick: (MarvelChars) -> Unit,
+    private var fnSave: (MarvelChars) -> Boolean
 
 ) : RecyclerView.Adapter<MarvelAdapters.MarvelViewHolder>() {
     var items: List<MarvelChars> = listOf()
@@ -20,7 +21,8 @@ class MarvelAdapters(
 
         private val binding: MarvelCharterBinding = MarvelCharterBinding.bind(view)
 
-        fun render(item: MarvelChars, fnClick: (MarvelChars) -> Unit) {
+        fun render(item: MarvelChars, fnClick: (MarvelChars) -> Unit,    fnSave: (MarvelChars) -> Boolean
+        ) {
             binding.name.text = item.name
             binding.comic.text = item.comic
             Picasso.get().load(item.image).into(binding.imageMarvel)
@@ -38,8 +40,31 @@ class MarvelAdapters(
              */
             itemView.setOnClickListener {
                 fnClick(item)
-
+//                Snackbar.make(
+//                    binding.imgMarvel,
+//                    item.name,
+//                    Snackbar.LENGTH_SHORT
+//                ).show()
             }
+            binding.imageViewLike.setOnClickListener {
+                var checkInsert:Boolean=false
+                checkInsert=fnSave(item)
+                if(checkInsert){
+                    Snackbar.make(
+                        binding.imageMarvel,
+                        "Se agrego a favoritos",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+
+                }else{
+                    Snackbar.make(
+                        binding.imageMarvel,
+                        "No se puedo agregar o Ya esta agregado",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
         }
     }
 
@@ -57,7 +82,7 @@ class MarvelAdapters(
     override fun onBindViewHolder(holder: MarvelAdapters.MarvelViewHolder, position: Int) {
         // TODO("Not yet implemented")
 
-        holder.render(items[position], fnClick)
+        holder.render(items[position], fnClick, fnSave)
     }
 
     override fun getItemCount(): Int = items.size

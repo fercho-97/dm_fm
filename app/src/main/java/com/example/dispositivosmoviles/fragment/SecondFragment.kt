@@ -88,12 +88,13 @@ class SecondFragment : Fragment() {
         return !like
     }
 */
-
     private lateinit var binding: FragmentSecondBinding
     private lateinit var lmanager: LinearLayoutManager
     private var marvelCharacterItems: MutableList<MarvelChars> = mutableListOf<MarvelChars>()
     private lateinit var progressBar: ProgressBar
-    private var rvAdapter: MarvelAdapters = MarvelAdapters { sendMarvelItems(it) }
+    private var rvAdapter: MarvelAdapters =
+        MarvelAdapters({ sendMarvelItem(it) }, { saveMarvelItem(it) })
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -103,7 +104,10 @@ class SecondFragment : Fragment() {
         lmanager = LinearLayoutManager(
             requireActivity(), LinearLayoutManager.VERTICAL, false
         )
+
+
         progressBar = binding.progressBar
+
         return binding.root
     }
 
@@ -134,12 +138,48 @@ class SecondFragment : Fragment() {
         rvAdapter.replaceListAdapter(marvelCharacterItems)
     }
 
-    fun sendMarvelItems(item: MarvelChars) {
+    /*fun sendMarvelItems(item: MarvelChars) {
 
         val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
         i.putExtra("name", item)
         startActivity(i)
     }
+
+     */
+
+    fun sendMarvelItem(item: MarvelChars) {
+        /*
+                val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
+                i.putExtra("name", item)
+                startActivity(i)
+
+
+         */
+        val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
+        i.putExtra("name", item)
+        i.putExtra("comic", item)
+        i.putExtra("imagen", item)
+        startActivity(i)
+    }
+
+    private fun saveMarvelItem(item: MarvelChars): Boolean {
+
+        return if (item == null || marvelCharacterItems.contains(item)) {
+            false
+        } else {
+
+            lifecycleScope.launch(Dispatchers.Main) {
+                withContext(Dispatchers.IO) {
+                    MarvelComicLogic().insertMarvelCharstoDB(listOf(item))
+                    marvelCharacterItems = MarvelComicLogic().getAllMarvelCharsDB().toMutableList()
+                }
+
+            }
+            true
+        }
+
+    }
+
 
     private fun chargeDataRV(nombre: String) {
 
@@ -175,6 +215,7 @@ class SecondFragment : Fragment() {
 
         }
     }
+
 
 
 }
