@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import com.example.dispositivosmoviles.logic.validator.LoginValidator
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
@@ -50,6 +52,7 @@ class Ingreso : AppCompatActivity() {
     }
 
     //Forma binding
+    @SuppressLint("ResourceAsColor")
     private fun initClass() {
         binding.btIngreso.setOnClickListener {
 
@@ -101,36 +104,163 @@ class Ingreso : AppCompatActivity() {
         }
 
 
-        val appResultLocal = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ resultActivity->
-            when(resultActivity.resultCode){
-                RESULT_OK->{
-                    Log.d("UCE", "Resultado exitoso")
+        val appResultLocal =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { resultActivity ->
 
-                    Snackbar.make(binding.btIngreso,
-                        "Resultado exitoso",
-                        Snackbar.LENGTH_LONG).show()
+
+                var color = R.color.black
+                var message = when (resultActivity.resultCode) {
+
+                    RESULT_OK -> {
+                        // "Resultado exitoso"
+                        color = resources.getColor(R.color.aqua)
+                        resultActivity.data?.getStringExtra(
+                            "result"
+                        ).orEmpty()
+                    }
+
+                    RESULT_CANCELED -> {
+                        //"Resultado fallido"
+                        color = resources.getColor(R.color.red)
+                        resultActivity.data?.getStringExtra(
+                            "result"
+                        ).orEmpty()
+                    }
+
+                    else -> {
+                        "Resultado dudoso"
+                    }
                 }
-                RESULT_CANCELED->{
 
-                    Log.d("UCE", "Resultado faliido")
-                    Snackbar.make(binding.btIngreso,
-                        "Resultado fallido",
-                        Snackbar.LENGTH_LONG).show()
+                val sn = Snackbar.make(
+                    binding.textTituloIngreso,
+                    message,
+                    Snackbar.LENGTH_LONG
+                )
+
+                sn.setBackgroundTint(color)
+                sn.show()
+                /*
+                                when (resultActivity.resultCode) {
+                                    RESULT_OK -> {
+                                        Log.d("UCE", "Resultado exitoso")
+
+                                        Snackbar.make(
+                                            binding.btIngreso,
+                                            "Resultado exitoso",
+                                            Snackbar.LENGTH_LONG
+                                        ).show()
+                                    }
+
+                                    RESULT_CANCELED -> {
+
+                                        Log.d("UCE", "Resultado faliido")
+                                        Snackbar.make(
+                                            binding.btIngreso,
+                                            "Resultado fallido",
+                                            Snackbar.LENGTH_LONG
+                                        ).show()
+                                    }
+
+                                    else -> {
+                                        Log.d("UCE", "Resultado dudoso")
+                                        Snackbar.make(
+                                            binding.btIngreso,
+                                            "Resultado dudoso",
+                                            Snackbar.LENGTH_LONG
+                                        ).show()
+                                    }
+
+                                }
+                 */
+            }
+
+       /* val speechToText = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult->
+
+            val sn = Snackbar.make(binding.textTituloIngreso, "", Snackbar.LENGTH_LONG)
+            var message = ""
+
+            when(activityResult.resultCode){
+                RESULT_OK -> {
+                    // "Resultado exitoso"
+                    message = activityResult.data?.
+                    getStringExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0).
+                    toString()
+                }
+                RESULT_CANCELED -> {
+                    message = "Proceso cancelado"
+                    sn.setBackgroundTint(resources.getColor(R.color.red))
+
                 }
                 else->{
-                    Log.d("UCE", "Resultado dudoso")
-                    Snackbar.make(binding.btIngreso,
-                        "Resultado dudoso",
-                        Snackbar.LENGTH_LONG).show()
+                    message = "Ocurrio un error"
+                    sn.setBackgroundTint(resources.getColor(R.color.red))
+
+
+                }
+
+
+            }
+
+        }*/
+        val speechToText = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ activityResult->
+            val sn=Snackbar.make(binding.textIngresoCorreo, "", Snackbar.LENGTH_LONG)
+            var message=""
+            when(activityResult.resultCode){
+                RESULT_OK->{
+
+                    //Devuelve el texto de voz
+                    val msg = activityResult
+                        .data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0)
+                        .toString()
+
+                    //Para hacer una consulta con la voz
+                    if(msg.isNotEmpty()){
+                        val intent = Intent(
+                            Intent.ACTION_WEB_SEARCH
+                        )
+                        intent.setClassName(
+                            "com.google.android.googlequicksearchbox",
+                            "com.google.android.googlequicksearchbox.SearchActivity"
+                        )
+                        intent.putExtra(SearchManager.QUERY, msg)
+                        startActivity(intent)
+                    }
+
+
+
+                    sn.setBackgroundTint(resources.getColor(R.color.aqua))
+                }
+                RESULT_CANCELED->{
+                    message="Proceso cancelado"
+                    sn.setBackgroundTint(resources.getColor(R.color.red))}
+                else->{
+                    message="Ocurrio un error"
+                    sn.setBackgroundTint(resources.getColor(R.color.red))
                 }
 
             }
 
+            sn.setText(message)
+            sn.show()
         }
 
-        binding.imageButtonFacebbok.setOnClickListener{
-            val resIntent = Intent(this, ResultActivity::class.java)
-            appResultLocal.launch(resIntent)
+
+        binding.imageButtonFacebbok.setOnClickListener {
+            //val resIntent = Intent(this, ResultActivity::class.java)
+            //appResultLocal.launch(resIntent)
+
+            val intentSpeech = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            intentSpeech.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+
+            intentSpeech.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+            Locale.getDefault())
+
+            intentSpeech.putExtra(RecognizerIntent.EXTRA_PROMPT,"DI ALGO...")
+            speechToText.launch(intentSpeech)
         }
     }
 

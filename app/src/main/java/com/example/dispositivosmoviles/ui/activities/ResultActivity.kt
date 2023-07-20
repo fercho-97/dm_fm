@@ -1,5 +1,6 @@
 package com.example.dispositivosmoviles.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.dispositivosmoviles.R
@@ -19,12 +20,17 @@ class ResultActivity : AppCompatActivity() {
         super.onStart()
 
         binding.buttonResultOk.setOnClickListener{
-            setResult(RESULT_OK)
+            val i = Intent()
+            i.putExtra("result", "Resultado exitoso")
+            setResult(RESULT_OK,i)
+
             finish()
         }
 
         binding.buttonResultFalse.setOnClickListener{
-            setResult(RESULT_CANCELED)
+            val i = Intent()
+            i.putExtra("result", "Resultado dudoso")
+            setResult(RESULT_CANCELED,i)
             finish()
         }
     }
