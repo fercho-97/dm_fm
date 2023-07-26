@@ -4,31 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/fondo_principal"
     tools:context=".ui.activities.Ingreso"
     >
 
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="130dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="332dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="72dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/logo_app"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.607"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+
         android:id="@+id/text_titulo_ingreso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
-        android:text="Pedidos Online"
+        android:text="Ingresa a tu cuenta"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -37,24 +38,26 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
+        style="@style/ingreso_titulo"
         android:id="@+id/text_saludo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="5dp"
-        android:text="¡Hola! ES bueno verte nuevamente"
-        android:textColor="@color/gray"
+        android:text="¡Hola! es bueno verte nuevamente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_titulo_ingreso" />
 
     <TextView
+        style="@style/ingreso_subtitulo"
         android:id="@+id/text_ingreso_correo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="10dp"
         android:text="Correo"
-        android:textColor="@color/red"
+        android:textColor="@color/orange"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_saludo" />
 
@@ -72,14 +75,13 @@
         app:layout_constraintTop_toBottomOf="@+id/text_ingreso_correo" />
 
     <TextView
+        style="@style/ingreso_subtitulo"
         android:id="@+id/text_ingreso_contrasena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="15dp"
         android:text="Contaseña"
-
-        android:textColor="@color/red"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editxt_correo" />
 
@@ -117,69 +119,69 @@
         app:layout_constraintTop_toBottomOf="@+id/editxt_contrasena"
         tools:ignore="MissingConstraints" />
 
+
     <TextView
         android:id="@+id/text_opcion_redes"
+        style="@style/ingreso_subtitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="O conéctese usando redes sociales"
-        android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_ingreso" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_twitter" />
 
     <ImageButton
         android:id="@+id/imageButton_twitter"
         android:layout_width="145dp"
         android:layout_height="50dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/twitter_logo"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes" />
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/bt_ingreso" />
 
     <ImageButton
         android:id="@+id/imageButton_facebbok"
 
         android:layout_width="145dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/facebook_logo"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes"
-        android:background="@drawable/facebook_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_ingreso" />
 
     <TextView
         android:id="@+id/text_olvido_contrasena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:text="¿Olvidó su contraseña?"
-        android:textColor="@color/gray"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_twitter" />
+        app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes" />
 
     <Button
         android:id="@+id/bt_registro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="10.5dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/transparent"
         android:text="Registrese"
         android:textColor="@color/red"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.791"
         app:layout_constraintStart_toEndOf="@+id/text_olvido_contrasena"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_facebbok"
+        app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes"
         tools:ignore="MissingConstraints" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

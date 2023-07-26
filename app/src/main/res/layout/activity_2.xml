@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.Activity2"
-    android:background="@color/white"
-    android:backgroundTint="@color/white"
+    android:background="@drawable/fondo_secundario"
     android:orientation="vertical">
 
 
@@ -52,9 +51,10 @@
         style="@style/search"
         android:layout_width="213dp"
         android:layout_height="31dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:background="@color/title_color_dm"
-        android:text="Search..........................."
+        android:text="Disfruta de los mejores comics"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
