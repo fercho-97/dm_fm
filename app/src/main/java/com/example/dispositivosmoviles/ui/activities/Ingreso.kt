@@ -229,7 +229,7 @@ class Ingreso : AppCompatActivity() {
                     saveDataStore(binding.editxtCorreo.text.toString())
 
                 }
-                var intent = Intent(this, MainActivity::class.java)
+                var intent = Intent(this, Activity2::class.java)
                 intent.putExtra(
                     "var1", ""
                 )

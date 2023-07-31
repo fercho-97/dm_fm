@@ -35,13 +35,6 @@ class Activity2 : AppCompatActivity() {
        //     name=it?.getString("var1")!!
 
         //}
-        Log.d("UCE","Entrando a start: ${name}")
-        binding.textname.text="Bienvenido: "+name.toString()
-        binding.boton1.setOnClickListener {
-            var intent =Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.bar_inicio -> {

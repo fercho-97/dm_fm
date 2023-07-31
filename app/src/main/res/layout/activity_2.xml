@@ -9,67 +9,31 @@
     android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/boton2"
-        style="@style/ButtonsCancel"
-        android:layout_width="93dp"
-        android:layout_height="50dp"
-
-        android:text="Bucar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
-        app:layout_constraintStart_toEndOf="@+id/imagen"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="1dp" />
-
-    <ImageView
-        android:id="@+id/imagen"
-        android:layout_width="51dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/blue"
-        app:layout_constraintStart_toEndOf="@+id/texto2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/settings_24" />
-
-    <Button
-        android:id="@+id/boton1"
-        style="@style/ButtonsGeneral"
-        android:layout_width="104dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="20dp"
-        android:text="Inicio de 2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frm_container"
-        tools:ignore="MissingConstraints" />
-
     <TextView
-        android:id="@+id/texto2"
-        style="@style/search"
-        android:layout_width="213dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/title_color_dm"
-        android:text="Disfruta de los mejores comics"
+        android:id="@+id/textView3"
+        android:layout_width="391dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="32dp"
+        android:text="Los mejores comics al alcance de un click"
+        android:textColor="@color/white"
+        android:textSize="27sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@color/black"
-        android:text="Texto"
+    <FrameLayout
+        android:id="@+id/frm_container"
+
+        android:layout_width="410dp"
+        android:layout_height="515dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto2"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         app:itemIconTint="@drawable/cualquiera"
@@ -80,16 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation_menu" />
 
-    <FrameLayout
-        android:id="@+id/frm_container"
 
-        android:layout_width="410dp"
-        android:layout_height="515dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textname">
-
-    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
