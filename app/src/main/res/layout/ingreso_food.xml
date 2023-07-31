@@ -13,7 +13,7 @@
         android:id="@+id/img_logo"
         android:layout_width="332dp"
         android:layout_height="145dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="64dp"
         android:scaleType="fitCenter"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,31 +42,34 @@
         android:id="@+id/text_saludo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="5dp"
+        android:fontFamily="sans-serif"
         android:text="¡Hola! es bueno verte nuevamente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_titulo_ingreso" />
 
+
     <TextView
-        style="@style/ingreso_subtitulo"
         android:id="@+id/text_ingreso_correo"
+        style="@style/ingreso_subtitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif"
         android:text="Correo"
         android:textColor="@color/orange"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_saludo" />
 
-
     <EditText
         android:id="@+id/editxt_correo"
         android:layout_width="315dp"
         android:layout_height="35dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="sans-serif"
         android:hint="example@email.com"
         android:text=""
         android:textSize="15sp"
@@ -75,17 +78,15 @@
         app:layout_constraintTop_toBottomOf="@+id/text_ingreso_correo" />
 
     <TextView
-        style="@style/ingreso_subtitulo"
         android:id="@+id/text_ingreso_contrasena"
+        style="@style/ingreso_subtitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
         android:text="Contaseña"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editxt_correo" />
-
-
 
     <EditText
         android:id="@+id/editxt_contrasena"
@@ -94,6 +95,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="contraseña"
+        android:fontFamily="sans-serif"
         android:text=""
         android:inputType="textPassword"
         android:textSize="15sp"
@@ -104,11 +106,11 @@
 
 
     <Button
-        android:drawableLeft="@drawable/twitter_25"
+        android:drawableLeft="@drawable/hah_50"
         android:id="@+id/bt_ingreso"
         style="@style/button_ingreso"
         android:layout_width="310dp"
-        android:layout_height="55sp"
+        android:layout_height="60sp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/red"
         android:fontFamily="sans-serif-black"
@@ -125,62 +127,65 @@
         style="@style/ingreso_subtitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
         android:text="O conéctese usando redes sociales"
+        android:textColor="#FFC107"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_twitter" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_ingreso" />
 
     <ImageButton
         android:id="@+id/imageButton_twitter"
         android:layout_width="145dp"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/twitter_logo"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_ingreso" />
+        app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes" />
 
     <ImageButton
         android:id="@+id/imageButton_facebbok"
 
         android:layout_width="145dp"
         android:layout_height="50dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="48dp"
         android:background="@drawable/facebook_logo"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_ingreso" />
+        app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes" />
 
     <TextView
         android:id="@+id/text_olvido_contrasena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:text="¿Olvidó su contraseña?"
-        android:textColor="@color/black"
+        android:textColor="#03A9F4"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_twitter" />
 
     <Button
         android:id="@+id/bt_registro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10.5dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@color/transparent"
         android:text="Registrese"
         android:textColor="@color/red"
         android:textStyle="bold"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.791"
         app:layout_constraintStart_toEndOf="@+id/text_olvido_contrasena"
-        app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_facebbok"
         tools:ignore="MissingConstraints" />
 
 
