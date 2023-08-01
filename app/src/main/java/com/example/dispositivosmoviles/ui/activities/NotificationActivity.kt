@@ -1,6 +1,7 @@
 package com.example.dispositivosmoviles.ui.activities
 
 import android.annotation.SuppressLint
+import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -9,10 +10,14 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityNotificationBinding
+import com.example.dispositivosmoviles.ui.utilities.BroadcasterNotifications
+import java.util.Calendar
+import java.util.Date
 
 class NotificationActivity : AppCompatActivity() {
 
@@ -24,13 +29,52 @@ class NotificationActivity : AppCompatActivity() {
         binding = ActivityNotificationBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        binding.btnNotification.setOnClickListener(){
+        binding.btnNotification.setOnClickListener() {
 
             createNotification()
             sendNotificaction()
+        }
+
+        binding.btnNotificationProgramada.setOnClickListener {
+
+            val calendar = Calendar.getInstance()
+            val hora = binding.timePicker.hour
+            val minutes = binding.timePicker.minute
+
+            Toast.makeText(this,
+                "La notificación se activará a las: $hora:$minutes",
+            Toast.LENGTH_SHORT).show()
+
+            calendar.set(Calendar.HOUR, hora)
+            calendar.set(Calendar.MINUTE, minutes)
+            calendar.set(Calendar.SECOND, 0)
+
+            sendNotificationTimePicker(calendar.timeInMillis)
 
 
         }
+    }
+
+    private fun sendNotificationTimePicker(time: Long) {
+
+        val myIntent = Intent(applicationContext, BroadcasterNotifications::class.java)
+        val myPendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            0,
+            myIntent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setExact(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            myPendingIntent
+        )
+
+
+
+
     }
 
     val CHANNEL: String = "Cotificacion"
@@ -50,7 +94,7 @@ class NotificationActivity : AppCompatActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    fun sendNotificaction(){
+    fun sendNotificaction() {
 
         val intent = Intent(this, CameraActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -63,7 +107,7 @@ class NotificationActivity : AppCompatActivity() {
         )
 
 
-        val noti= NotificationCompat.Builder(this, CHANNEL)
+        val noti = NotificationCompat.Builder(this, CHANNEL)
         noti.setContentTitle("Primera notificacion")
         noti.setContentText("MI primera notificaciones en android")
         noti.setSmallIcon(R.drawable.home_48)
@@ -71,13 +115,14 @@ class NotificationActivity : AppCompatActivity() {
         noti.setStyle(
             NotificationCompat
                 .BigTextStyle()
-                .bigText("Esta es una notificacion para recordar que esta es mi primera implementacipn de notificacion"))
+                .bigText("Esta es una notificacion para recordar que esta es mi primera implementacipn de notificacion")
+        )
 
         noti.setContentIntent(pendingIntent)
 
-        with(NotificationManagerCompat.from(this)){
-            notify(1,noti.build())
+        with(NotificationManagerCompat.from(this)) {
+            notify(1, noti.build())
         }
 
-}
+    }
 }
