@@ -9,9 +9,6 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
-
-
-
     <application
         android:name=".ui.utilities.DispositivosMoviles"
         android:allowBackup="true"
@@ -24,9 +21,13 @@
         android:theme="@style/Theme.DispositivosMoviles"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activities.NotificationActivity"
+            android:exported="false" />
 
-        <receiver android:name=".ui.utilities.BroadcasterNotifications"
-            android:enabled="true"></receiver>
+        <receiver
+            android:name=".ui.utilities.BroadcasterNotifications"
+            android:enabled="true" />
 
         <activity
             android:name=".ui.activities.CameraActivity"
@@ -44,7 +45,7 @@
             android:name=".ui.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.NotificationActivity"
+            android:name=".ui.activities.ProgressActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
