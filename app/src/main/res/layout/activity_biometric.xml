@@ -6,31 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.BiometricActivity">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
-        android:text="Autenticación Biometrica"
-        android:textSize="44sp"
-        android:textColor="@color/skyblue"
-        android:textStyle="bold"
+
+    <LinearLayout
+        android:id="@+id/lyMainOriginal"
+        android:layout_width="411dp"
+        android:layout_height="545dp"
         android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </TextView>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            android:layout_marginTop="176dp"
+            android:gravity="center"
+            android:text="Autenticación Biometrica"
+            android:textColor="@color/skyblue"
+            android:textSize="44sp"
+            android:textStyle="bold">
 
-    <ImageView
-        android:id="@+id/btn_autentication"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="132dp"
-        android:src="@drawable/baseline_fingerprint_24"
+        </TextView>
+
+        <ImageView
+            android:id="@+id/btn_autentication"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="192dp"
+            android:layout_marginTop="132dp"
+            android:src="@drawable/baseline_fingerprint_24"></ImageView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lyMainCopia"
+        android:layout_width="411dp"
+        android:layout_height="545dp"
+        android:gravity="center"
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"></ImageView>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include layout="@layout/shimmer_layout_biometric"></include>
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

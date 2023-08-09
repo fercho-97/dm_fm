@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/lyMainCopia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:auto_start="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+
+            android:layout_width="411dp"
+            android:layout_height="545dp"
+            android:gravity="center"
+            android:orientation="vertical"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="123dp"
+                android:layout_marginTop="176dp"
+                android:background="@color/gray"
+                android:gravity="center">
+
+            </View>
+
+            <View
+                android:id="@+id/btn_autentication2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="192dp"
+                android:layout_marginTop="132dp"
+                android:background="@color/gray"></View>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

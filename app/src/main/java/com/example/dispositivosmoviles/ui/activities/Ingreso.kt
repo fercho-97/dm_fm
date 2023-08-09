@@ -13,6 +13,7 @@ import android.os.Looper
 import android.provider.Settings
 import android.speech.RecognizerIntent
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -39,7 +40,11 @@ import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.LocationSettingsStatusCodes
 import com.google.android.gms.location.Priority
 import com.google.android.gms.location.SettingsClient
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -62,6 +67,9 @@ class Ingreso : AppCompatActivity() {
 
     private lateinit var client: SettingsClient
     private lateinit var locationSettingsRequest: LocationSettingsRequest
+    private lateinit var auth: FirebaseAuth
+
+    private  val TAG = "UCE"
 
 
     private val speechToText =
@@ -170,6 +178,17 @@ class Ingreso : AppCompatActivity() {
         binding = IngresoFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = Firebase.auth
+
+        binding.btIngreso.setOnClickListener{
+
+            singInWithFirebaseEmail(
+                binding.editxtCorreo.text.toString(),
+                binding.editxtContrasena.text.toString()
+            )
+
+        }
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
 
@@ -200,9 +219,94 @@ class Ingreso : AppCompatActivity() {
 
     }
 
+    private fun authWithFirebaseEmail(email: String, password: String){
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "createUserWithEmail:success")
+                    val user = auth.currentUser
+
+                    Toast.makeText(baseContext,
+                        "Authentication Success.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            }
+
+    }
+
+    private fun singInWithFirebaseEmail(email: String, password: String){
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithEmail:success")
+                    val user = auth.currentUser
+                    Toast.makeText(baseContext,
+                        "Acceso consedido.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                    var intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra(
+                        "var1", ""
+                    )
+                    startActivity(intent)
+                    intent.putExtra(
+                        "var2", 2
+                    )
+                    startActivity(intent)
+
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w(TAG, "signInWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Acceso failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+
+                }
+            }
+    }
+
+    private fun recoveryPasswordWithEmail(email: String){
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener{task->
+
+                if(task.isSuccessful){
+                    Toast.makeText(baseContext,
+                        "Corro de recuperación enviado correctamente",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+
+                    MaterialAlertDialogBuilder(this).apply {
+                        setTitle("Alerta")
+                        setMessage("Corro de recuperación enviado correctamente")
+                        setCancelable(true)
+
+                    }.show()
+                }
+
+            }
+
+
+    }
+
+
     override fun onStart() {
         super.onStart()
-        initClass()
+      //  initClass()
 
     }
 
