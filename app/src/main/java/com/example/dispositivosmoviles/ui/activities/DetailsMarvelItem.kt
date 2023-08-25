@@ -33,9 +33,9 @@ class DetailsMarvelItem : AppCompatActivity() {
         setContentView(binding.root)
 
     }
+
     override fun onStart() {
         super.onStart()
-
 
         val item = intent.getParcelableExtra<MarvelChars>("name")
 
@@ -52,12 +52,15 @@ class DetailsMarvelItem : AppCompatActivity() {
                     )
                 )
                 if (checkInsert) {
+                    // Mostrar la animación aquí
+                    binding.imagelike.setAnimation(R.raw.joy)
+                    binding.imagelike.playAnimation()
+
                     Snackbar.make(
                         binding.imageMarvel,
                         "Se agrego a favoritos",
                         Snackbar.LENGTH_SHORT
                     ).show()
-
                 } else {
                     Snackbar.make(
                         binding.imageMarvel,
@@ -67,8 +70,6 @@ class DetailsMarvelItem : AppCompatActivity() {
                 }
             }
         }
-
-
     }
 
     private fun saveMarvelItem(item: MarvelChars): Boolean {

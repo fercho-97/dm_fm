@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "537489633604",
+    "project_id": "practicauce-15fbb",
+    "storage_bucket": "practicauce-15fbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537489633604:android:a1f851e1c1851a9bb02711",
+        "android_client_info": {
+          "package_name": "com.example.dispositivosmoviles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "537489633604-654e5aimtl45o4s26d8cmppg2es0k08o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dispositivosmoviles",
+            "certificate_hash": "2019035fe806dff63e2b41440f1fa1cf66b367e6"
+          }
+        },
+        {
+          "client_id": "537489633604-6b658ova5q8iqp4louu97oko6jt0o4ge.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0MwaBzrQCC9ScV1qdPhkT-zZhkVUveak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "537489633604-6b658ova5q8iqp4louu97oko6jt0o4ge.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

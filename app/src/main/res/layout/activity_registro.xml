@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_principal"
-    tools:context=".ui.activities.Ingreso">
+    android:background="@drawable/fondo_rg"
+    tools:context=".ui.activities.RegistroActivity">
 
 
     <ImageView
         android:id="@+id/img_logo"
         android:layout_width="332dp"
         android:layout_height="145dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="24dp"
+        android:foregroundGravity="center"
         android:scaleType="fitCenter"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +29,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
-        android:text="Ingresa a tu cuenta"
+        android:text="Crea tu cuenta"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -44,7 +45,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="5dp"
         android:fontFamily="sans-serif"
-        android:text="¡Hola! es bueno verte nuevamente"
+        android:textColor="@color/black"
+        android:text="¡Hola! llena con tus datos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_titulo_ingreso" />
 
@@ -66,13 +68,12 @@
     <EditText
         android:id="@+id/editxt_correo"
         android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif"
         android:hint="example@email.com"
         android:text=""
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_ingreso_correo" />
@@ -85,90 +86,43 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:text="Contaseña"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editxt_correo" />
-
 
     <EditText
         android:id="@+id/editxt_contrasena"
         android:layout_width="315dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:fontFamily="sans-serif"
         android:hint="contraseña"
-        android:inputType="textPassword"
+        android:fontFamily="sans-serif"
         android:text=""
-        android:textSize="20sp"
-        android:textColor="@color/black"
+        android:inputType="textPassword"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_ingreso_contrasena" />
 
 
+
     <Button
-        android:id="@+id/bt_ingreso"
+        android:drawableLeft="@drawable/registro_50"
+        android:id="@+id/bt_registro"
         style="@style/button_ingreso"
         android:layout_width="310dp"
-        android:layout_height="60sp"
+        android:layout_height="80sp"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/red"
-        android:drawableLeft="@drawable/hah_50"
         android:fontFamily="sans-serif-black"
-        android:text="Ingresar"
+        android:text="Registro"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editxt_contrasena"
         tools:ignore="MissingConstraints" />
 
 
-    <TextView
-        android:id="@+id/text_opcion_redes"
-        style="@style/ingreso_subtitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="sans-serif"
-        android:text="O conéctese usando redes sociales"
-        android:textColor="#FFC107"
-        android:hint=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_ingreso" />
-
-    <Button
-        android:id="@+id/bt_googgle"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/black"
-        android:text="Google"
-        android:textStyle="bold"
-        android:drawableEnd="@drawable/google_logo_30"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes" />
-
-
-    <Button
-        android:id="@+id/bt_registro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@color/transparent"
-        android:text="Registrese"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_googgle"
-        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

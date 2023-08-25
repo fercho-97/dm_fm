@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_perfil"
+    tools:context=".ui.activities.PerfilActivity">
+
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/editxt_correo"-->
+    <!--        android:layout_width="315dp"-->
+    <!--        android:layout_height="35dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="44dp"-->
+    <!--        android:hint="Email"-->
+    <!--        android:text=""-->
+    <!--        android:textSize="25sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/profileImageView" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/editxt_type"-->
+    <!--        android:layout_width="315dp"-->
+    <!--        android:layout_height="35dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="28dp"-->
+    <!--        android:hint="Type"-->
+    <!--        android:text="....."-->
+    <!--        android:textSize="25sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/editxt_correo" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/editxt_ciudad"-->
+    <!--        android:layout_width="315dp"-->
+    <!--        android:layout_height="35dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:hint="City"-->
+    <!--        android:textSize="25sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/editxt_type" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/bt_salir"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:text="Salir "-->
+    <!--        android:textSize="20sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/buttonChangePhoto" />-->
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/buttonChangePhoto"-->
+    <!--        android:layout_width="69dp"-->
+    <!--        android:layout_height="59dp"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginStart="184dp"-->
+    <!--        android:layout_marginTop="236dp"-->
+    <!--        android:background="?attr/selectableItemBackground"-->
+    <!--        android:clickable="true"-->
+    <!--        android:contentDescription="Cambiar Foto"-->
+    <!--        android:focusable="true"-->
+    <!--        android:padding="16dp"-->
+    <!--        android:src="@drawable/champagne1"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/editxt_ciudad" />-->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        android:backgroundTint="#B2FF9800"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity=""
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/profileImageView"
+                android:layout_width="151dp"
+                android:layout_height="156dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Correo:"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/editxt_correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="correo@example.com"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Tipo:"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/editxt_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tipo de Usuario"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Ciudad:"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/editxt_ciudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ciudad Ejemplo"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <Button
+        android:id="@+id/bt_salir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/blue"
+        android:text="Salir "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+    <ImageView
+        android:id="@+id/buttonChangePhoto"
+        android:layout_width="89dp"
+        android:layout_height="73dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="112dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:contentDescription="Cambiar Foto"
+        android:focusable="true"
+        android:padding="16dp"
+        android:src="@drawable/camara_64_blanca"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

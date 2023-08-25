@@ -76,4 +76,16 @@ class MarvelComicLogic {
 
 
     }
+
+    suspend fun getSavedMarvelChars(): List<MarvelChars> {
+        return DispositivosMoviles.getDBInstance().marvelDao().getAllCharacters()
+            .map {
+                MarvelChars(
+                    it.id,
+                    it.name,
+                    it.comic,
+                    it.image
+                )
+            }
+    }
 }

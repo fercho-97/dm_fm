@@ -1,30 +1,26 @@
 package com.example.dispositivosmoviles.fragment
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.core.widget.addTextChangedListener
-import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.data.entities.MarvelChars
 import com.example.dispositivosmoviles.databinding.FragmentFirstBinding
 import com.example.dispositivosmoviles.logic.marvelLogic.MarvelComicLogic
-import com.example.dispositivosmoviles.logic.validator.jkanLogic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvelItem
 import com.example.dispositivosmoviles.ui.activities.dataStore
 import com.example.dispositivosmoviles.ui.adapter.MarvelAdapters
 import com.example.dispositivosmoviles.ui.data.UserDataStore
-import com.example.dispositivosmoviles.ui.utilities.DispositivosMoviles
 import com.example.dispositivosmoviles.ui.utilities.Metodos
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -34,17 +30,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FirstFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FirstFragment : Fragment() {
     // TODO: Rename and change types of parameters
-
-
-    // se debe poner igual viewbinding
-
 
     private lateinit var binding: FragmentFirstBinding
     private lateinit var lmanager: LinearLayoutManager
@@ -54,6 +41,7 @@ class FirstFragment : Fragment() {
 
     private var rvAdapter: MarvelAdapters =
         MarvelAdapters({ sendMarvelItem(it) }, { saveMarvelItem(it) })
+
     private var page: Int = 1
     private var offset: Int = 0
     private val limit: Int = 99
@@ -78,74 +66,6 @@ class FirstFragment : Fragment() {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_first, container, false)// se necesita 3 cosas ,
     }
-    /*
-        override fun onStart() {
-            super.onStart()
-
-            val names = arrayListOf<String>(
-                "Juan",
-                "Josue",
-                "Antony",
-                "Dome"
-            )
-
-            val adapter =
-                ArrayAdapter<String>(
-                    requireActivity(),
-                    R.layout.spinner_item_layaout, names
-                )
-            binding.spinner.adapter = adapter
-            // binding.listview.adapter = adapter
-
-            chargeDataRV()
-
-            binding.rvSwipe.setOnRefreshListener {
-
-                chargeDataRV()
-                binding.rvSwipe.isRefreshing = false
-            }
-
-            binding.rcMarvelCharter.addOnScrollListener(
-                object : RecyclerView.OnScrollListener() {
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-
-                        if (dy > 0) {
-                            val v = lmanager.childCount
-                            val p = lmanager.findFirstVisibleItemPosition()
-                            val t = lmanager.itemCount
-
-                            if ((v + p) >= t) {
-
-                                lifecycleScope.launch(Dispatchers.IO) {
-                                    val items = MarvelComicLogic().getAllMarvelChars(0, 10)
-
-                                    withContext(Dispatchers.Main) {
-                                        rvAdapter.updateListItems(items)
-
-                                    }
-
-                                }
-                            }
-                        }
-
-                    }
-
-                })
-
-            binding.txtfilter.addTextChangedListener { filterText ->
-
-                val newItems = marvelCharacterItems.filter { items ->
-                    items.name.contains(filterText.toString())
-                }
-
-                rvAdapter.replaceListItems(newItems)
-            }
-
-
-        }
-
-     */
 
     override fun onStart() {
         super.onStart()
@@ -164,13 +84,6 @@ class FirstFragment : Fragment() {
             "Dome"
         )
 
-        val adapter =
-            ArrayAdapter<String>(
-                requireActivity(),
-                R.layout.spinner_item_layaout, names
-            )
-        binding.spinner.adapter = adapter
-        // binding.listview.adapter = adapter
 
         chargeDataRVInit(offset, limit)
         binding.rvSwipe.setOnRefreshListener {
@@ -231,19 +144,14 @@ class FirstFragment : Fragment() {
                 }
             }
 
-
         })
+
+
     }
 
 
     fun sendMarvelItem(item: MarvelChars) {
-        /*
-                val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
-                i.putExtra("name", item)
-                startActivity(i)
 
-
-         */
         val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
         i.putExtra("name", item)
         i.putExtra("comic", item)
@@ -258,6 +166,9 @@ class FirstFragment : Fragment() {
         } else {
 
             lifecycleScope.launch(Dispatchers.Main) {
+
+                val mediaPlayer = MediaPlayer.create(context, R.raw.sound_like)
+                mediaPlayer.start()
                 withContext(Dispatchers.IO) {
                     MarvelComicLogic().insertMarvelCharstoDB(listOf(item))
                     marvelCharsItemsDB = MarvelComicLogic().getAllMarvelCharsDB().toMutableList()
@@ -280,68 +191,7 @@ class FirstFragment : Fragment() {
         }
     }
 
-    /*
-    fun chargeDataRV(pos: Int) {
 
-        lifecycleScope.launch(Dispatchers.IO) {
-
-
-            var marvelCharsItem = MarvelComicLogic().getAllAnimes("spider", page*2)
-
-            rvAdapter.items =
-                MarvelComicLogic().getAllAnimes(name = search, 10)
-            //JikanAnimeLogic().getAllAnimes()
-
-            withContext(Dispatchers.Main) {
-                with(binding.rcMarvelCharter) {
-                    this.adapter = rvAdapter
-                    this.layoutManager = lmanager
-                }
-            }
-
-        }
-
-    }
-
-     */
-
-    /*private fun chargeDataRV() {
-
-        lifecycleScope.launch(Dispatchers.Main) {
-            marvelCharacterItems = withContext(Dispatchers.IO) {
-                return@withContext (MarvelComicLogic().getAllMarvelChars(
-                    0, 99
-
-
-                ))
-            } as MutableList<MarvelChars>
-
-            rvAdapter.items =
-
-
-                    //JikanAnimeLogic().getAllAnimes()
-                MarvelComicLogic().getAllMarvelChars(0, 50)
-
-            //ListItems().returnMarvelChar()
-            /*   JikanAnimeLogic().getAllAnimes()
-   ) { sendMarvelItems(it) }
-*/
-
-
-
-            binding.rcMarvelCharter.apply {
-                this.adapter = rvAdapter
-                //  this.layoutManager = lmanager
-                this.layoutManager = lmanager
-            }
-
-
-        }
-
-    }
-
-
-     */
     fun chargeDataRV(limit: Int, offset: Int) {
 
 
@@ -466,7 +316,7 @@ class FirstFragment : Fragment() {
 
         } else {
             Snackbar.make(
-                binding.spinner,
+                binding.rvSwipe,
                 "No hay conexion",
                 Snackbar.LENGTH_LONG
             )

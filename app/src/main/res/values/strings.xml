@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Marvel Comic</string>
     <string name="saludo">Hola Mundo</string>
-    <string name="inicio">Inicio</string>
-    <string name="favorito">Favoritos</string>
-    <string name="configuraciones">Configuraciones</string>
+    <string name="first">Comics</string>
+    <string name="second">Busqueda</string>
+    <string name="third">Tus favoritos</string>
+    <string name="prefs_file">com.dispositivos.PREFERENCE_FILE_KEY</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

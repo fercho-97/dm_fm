@@ -47,8 +47,8 @@
 
     <style name="ActiveIndicador" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:textStyle">bold</item>
-        <item name="android:color">@color/aqua</item>
-        <item name="cornerRadius">7dp</item>
+        <item name="backgroundTint">@color/black</item>
+        <item name="android:color">@color/skyblue</item>
     </style>
 
     <style name="ingreso_titulo">

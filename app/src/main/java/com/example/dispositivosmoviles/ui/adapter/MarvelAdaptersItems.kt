@@ -1,27 +1,22 @@
 package com.example.dispositivosmoviles.ui.adapter
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.snackbar.Snackbar
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.data.entities.MarvelChars
 import com.example.dispositivosmoviles.databinding.MarvelCharterBinding
 import com.squareup.picasso.Picasso
 
-class MarvelAdapters(
+class MarvelAdaptersItems(
     private var fnClick: (MarvelChars) -> Unit,
     private var fnSave: (MarvelChars) -> Boolean
 
-) : RecyclerView.Adapter<MarvelAdapters.MarvelViewHolder>() {
+) : RecyclerView.Adapter<MarvelAdaptersItems.MarvelViewHolder>() {
     var items: List<MarvelChars> = listOf()
 
-
-
     class MarvelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
 
         private val binding: MarvelCharterBinding = MarvelCharterBinding.bind(view)
 
@@ -30,45 +25,25 @@ class MarvelAdapters(
             binding.name.text = item.name
             binding.comic.text = item.comic
             Picasso.get().load(item.image).into(binding.imageMarvel)
+            itemView.setOnClickListener {
+                fnClick(item)
 
-            binding.imageViewLike.setOnClickListener {
-                var checkInsert:Boolean=false
-                checkInsert=fnSave(item)
-                if (checkInsert) {
-
-                    binding.imageViewLike.setAnimation(R.raw.bandai_dokkan)
-                    binding.imageViewLike.playAnimation()
-
-                    Snackbar.make(
-                        binding.imageMarvel,
-                        "Se agrego a favoritos",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-
-                }else{
-                    Snackbar.make(
-                        binding.imageMarvel,
-                        "No se puedo agregar o Ya esta agregado",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
             }
-
         }
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MarvelAdapters.MarvelViewHolder {
+    ): MarvelAdaptersItems.MarvelViewHolder {
         //   TODO("Not yet implemented")
 
 
         val inflater = LayoutInflater.from(parent.context)
-        return MarvelViewHolder(inflater.inflate(R.layout.marvel_charter, parent, false))
+        return MarvelViewHolder(inflater.inflate(R.layout.marvel_item, parent, false))
     }
 
-    override fun onBindViewHolder(holder: MarvelAdapters.MarvelViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MarvelAdaptersItems.MarvelViewHolder, position: Int) {
         // TODO("Not yet implemented")
 
         holder.render(items[position], fnClick, fnSave)
