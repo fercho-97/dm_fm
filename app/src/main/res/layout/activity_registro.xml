@@ -38,8 +38,8 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        style="@style/ingreso_titulo"
         android:id="@+id/text_saludo"
+        style="@style/ingreso_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -59,7 +59,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
-        android:text="Correo"
+        android:text="Nombre"
         android:textColor="@color/orange"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,12 +68,13 @@
     <EditText
         android:id="@+id/editxt_correo"
         android:layout_width="315dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif"
-        android:hint="example@email.com"
+        android:hint="example@gmail.com"
+        android:textColor="@color/black"
         android:text=""
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_ingreso_correo" />
@@ -85,43 +86,56 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
-        android:text="Contaseña"
+        android:text="Correo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editxt_correo" />
 
     <EditText
         android:id="@+id/editxt_contrasena"
         android:layout_width="315dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="contraseña"
+        android:textColor="@color/black"
         android:fontFamily="sans-serif"
         android:text=""
         android:inputType="textPassword"
-        android:textSize="15sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_ingreso_contrasena" />
 
 
+    <ImageView
+        android:id="@+id/img_gift_marvel"
+        android:layout_width="267dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editxt_contrasena">
+
+
+    </ImageView>
 
     <Button
-        android:drawableLeft="@drawable/registro_50"
         android:id="@+id/bt_registro"
         style="@style/button_ingreso"
         android:layout_width="310dp"
         android:layout_height="80sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/red"
+        android:drawableLeft="@drawable/registro_50"
         android:fontFamily="sans-serif-black"
         android:text="Registro"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editxt_contrasena"
+        app:layout_constraintTop_toBottomOf="@+id/img_gift_marvel"
         tools:ignore="MissingConstraints" />
-
 
 
 

@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dispositivosmoviles.data.entities.MarvelChars
 import com.example.dispositivosmoviles.databinding.FragmentThirdBinding
 import com.example.dispositivosmoviles.logic.marvelLogic.MarvelComicLogic
-
 import com.example.dispositivosmoviles.ui.adapter.MarvelAdaptersItems
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +28,6 @@ class ThirdFragment : Fragment() {
 
         binding = FragmentThirdBinding.inflate(
             layoutInflater, container,false
-
         )
 
         rvAdapter = MarvelAdaptersItems({ sendMarvelItem(it) }, { saveMarvelItem(it) })
@@ -56,7 +54,6 @@ class ThirdFragment : Fragment() {
             val savedMarvelChars = withContext(Dispatchers.IO) {
                 MarvelComicLogic().getSavedMarvelChars()
             }
-
 
             rvAdapter.replaceListAdapter(savedMarvelChars)
         }

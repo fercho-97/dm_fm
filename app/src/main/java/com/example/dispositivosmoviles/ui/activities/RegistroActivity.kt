@@ -6,6 +6,7 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityRegistroBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +17,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
+
 class RegistroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistroBinding
@@ -24,14 +27,20 @@ class RegistroActivity : AppCompatActivity() {
 
     private lateinit var mediaPlayer: MediaPlayer
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegistroBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
         setup()
-
         mediaPlayer = MediaPlayer.create(this, R.raw.sound_rg)
+
+        Glide.with(this)
+            .asGif()
+            .load(R.drawable.gift_comicon)
+            .into(binding.imgGiftMarvel);
+
     }
 
     private fun setup() {
@@ -57,6 +66,9 @@ class RegistroActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
     private fun showAlert() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Error")

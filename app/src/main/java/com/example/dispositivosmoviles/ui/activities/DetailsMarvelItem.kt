@@ -1,19 +1,12 @@
 package com.example.dispositivosmoviles.ui.activities
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import com.airbnb.lottie.LottieAnimationView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.data.entities.MarvelChars
 import com.example.dispositivosmoviles.databinding.ActivityDetailsMarvelItemBinding
-import com.example.dispositivosmoviles.databinding.FragmentThirdBinding
-import com.example.dispositivosmoviles.databinding.MarvelCharterBinding
 import com.example.dispositivosmoviles.logic.marvelLogic.MarvelComicLogic
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso

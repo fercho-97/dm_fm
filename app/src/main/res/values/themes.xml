@@ -45,6 +45,12 @@
         <item name="cornerRadius">10dp</item>
     </style>
 
+    <style name="button_registro" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/blue</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">10dp</item>
+    </style>
+
     <style name="ActiveIndicador" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:textStyle">bold</item>
         <item name="backgroundTint">@color/black</item>

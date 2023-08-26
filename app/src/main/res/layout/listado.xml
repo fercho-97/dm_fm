@@ -14,8 +14,8 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="352dp"
-        android:layout_height="366dp"
+        android:layout_width="298dp"
+        android:layout_height="347dp"
         android:layout_gravity="center"
         android:backgroundTint="#D3FFEB3B"
         app:cardCornerRadius="12dp"
@@ -36,7 +36,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="TextView"
-                android:textColor="@color/black"
+                android:textColor="#009688"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,13 +45,13 @@
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="TextView"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

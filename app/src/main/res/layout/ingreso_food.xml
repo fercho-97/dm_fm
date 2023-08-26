@@ -140,29 +140,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_ingreso" />
 
+
     <Button
         android:id="@+id/bt_googgle"
-        android:layout_width="280dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="36dp"
         android:backgroundTint="@color/black"
-        android:text="Google"
-        android:textStyle="bold"
         android:drawableEnd="@drawable/google_logo_30"
+        android:text="Google"
         android:textSize="17sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_opcion_redes" />
 
-
     <Button
         android:id="@+id/bt_registro"
+        style="@style/button_registro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:background="@color/transparent"
+
         android:text="Registrese"
-        android:textColor="@color/white"
+        android:textColor="@color/skyblue"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

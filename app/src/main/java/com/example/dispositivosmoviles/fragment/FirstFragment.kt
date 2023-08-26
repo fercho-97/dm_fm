@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -24,8 +23,6 @@ import com.example.dispositivosmoviles.ui.data.UserDataStore
 import com.example.dispositivosmoviles.ui.utilities.Metodos
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -42,7 +39,6 @@ class FirstFragment : Fragment() {
     private var rvAdapter: MarvelAdapters =
         MarvelAdapters({ sendMarvelItem(it) }, { saveMarvelItem(it) })
 
-    private var page: Int = 1
     private var offset: Int = 0
     private val limit: Int = 99
 
@@ -63,26 +59,17 @@ class FirstFragment : Fragment() {
         )
 
         return binding.root
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_first, container, false)// se necesita 3 cosas ,
     }
 
     override fun onStart() {
         super.onStart()
 
-        lifecycleScope.launch(Dispatchers.IO){
-            getDataStore().collect(){
+        lifecycleScope.launch(Dispatchers.IO) {
+            getDataStore().collect() {
                 Log.d("UCE", it.toString())
             }
 
         }
-
-        val names = arrayListOf<String>(
-            "Juan",
-            "Josue",
-            "Antony",
-            "Dome"
-        )
 
 
         chargeDataRVInit(offset, limit)
@@ -109,7 +96,7 @@ class FirstFragment : Fragment() {
                     if ((v + p) >= t) {
 
                         var newItems = listOf<MarvelChars>()
-                        if (offset < 99) {
+                        if (offset < 500) {
                             //Log.i("En el scrollview Offset if","$offset")
                             updateDataRV(limit, offset)
                             lifecycleScope.launch((Dispatchers.Main)) {
@@ -126,7 +113,7 @@ class FirstFragment : Fragment() {
                             }
                         } else {
                             //Log.i("En el scrollview Offset else","$offset")
-                            if (offset == 99) {
+                            if (offset == 500) {
                                 updateDataRV(limit, offset)
                             } else {
                                 updateAdapterRV()
@@ -180,21 +167,10 @@ class FirstFragment : Fragment() {
 
     }
 
-    fun corrotine() {
-
-        lifecycleScope.launch(Dispatchers.Main) {
-            var name = "Fer"
-            name = withContext((Dispatchers.IO)) {
-                name = "Jairo"
-                return@withContext name
-            }
-        }
-    }
-
 
     fun chargeDataRV(limit: Int, offset: Int) {
 
-
+        val newLimit = limit * 7
         lifecycleScope.launch(Dispatchers.Main) {
 
             marvelCharacterItems = withContext(Dispatchers.IO) {
@@ -210,7 +186,7 @@ class FirstFragment : Fragment() {
                 this.adapter = rvAdapter
                 this.layoutManager = lmanager
             }
-            this@FirstFragment.offset += limit
+            this@FirstFragment.offset += newLimit
         }
 
 
@@ -250,36 +226,6 @@ class FirstFragment : Fragment() {
 
     }
 
-    private fun chargeDataRVDB() {
-
-
-        lifecycleScope.launch(Dispatchers.Main) {
-
-            marvelCharacterItems = withContext(Dispatchers.IO) {
-
-                var marvelCharacterItems = MarvelComicLogic().getAllMarvelCharsDB().toMutableList()
-
-
-                if (marvelCharacterItems.isEmpty()) {
-
-                    marvelCharacterItems =
-                        (MarvelComicLogic().getAllMarvelChars(0, 99).toMutableList())
-                    MarvelComicLogic().insertMarvelCharstoDB(marvelCharacterItems)
-                }
-
-                return@withContext marvelCharacterItems
-            }
-
-            rvAdapter.items = marvelCharacterItems
-
-            binding.rcMarvelCharter.apply {
-                this.adapter = rvAdapter
-                this.layoutManager = lmanager
-            }
-        }
-
-
-    }
 
     override fun onResume() {
         super.onResume()
@@ -290,7 +236,6 @@ class FirstFragment : Fragment() {
 
         }
     }
-
 
     fun chargeDataRVInit(offset: Int, limit: Int) {
 
@@ -326,12 +271,11 @@ class FirstFragment : Fragment() {
 
     private fun getDataStore() = requireActivity().dataStore.data.map { prefs ->
         UserDataStore(
-            name=prefs[stringPreferencesKey("usuario")].orEmpty(),
-            email=prefs[stringPreferencesKey("email")].orEmpty(),
-            session=prefs[stringPreferencesKey("session")].orEmpty()
+            name = prefs[stringPreferencesKey("usuario")].orEmpty(),
+            email = prefs[stringPreferencesKey("email")].orEmpty(),
+            session = prefs[stringPreferencesKey("session")].orEmpty()
         )
     }
-
 
 
 }

@@ -1,6 +1,5 @@
 package com.example.dispositivosmoviles.fragment
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
@@ -100,8 +99,6 @@ class SecondFragment : Fragment() {
             speechToText.launch(intentSpeech)
         }
 
-
-
     }
 
     fun reset() {
@@ -143,20 +140,14 @@ class SecondFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.Main) {
             progressBar.visibility = View.VISIBLE
             marvelCharacterItems = withContext(Dispatchers.IO) {
-                return@withContext (MarvelComicLogic().getMarvelChars(nombre, 5)
-
-
-                        )
+                return@withContext (MarvelComicLogic().getMarvelChars(nombre, 5))
             } as MutableList<MarvelChars>
             if (marvelCharacterItems.size == 0) {
                 var f = Snackbar.make(binding.txtBucar, "No se encontro", Snackbar.LENGTH_LONG)
 
                 f.show()
             }
-            rvAdapter.items =
-
-
-                MarvelComicLogic().getMarvelChars(nombre, 10)
+            rvAdapter.items =MarvelComicLogic().getMarvelChars(nombre, 10)
 
             binding.rvMarvel.apply {
                 this.adapter = rvAdapter
@@ -167,7 +158,5 @@ class SecondFragment : Fragment() {
 
         }
     }
-
-
 
 }

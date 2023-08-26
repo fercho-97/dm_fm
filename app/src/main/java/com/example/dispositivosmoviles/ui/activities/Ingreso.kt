@@ -1,6 +1,5 @@
 package com.example.dispositivosmoviles.ui.activities
 
-
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
@@ -44,9 +43,15 @@ class Ingreso : AppCompatActivity() {
         binding = IngresoFoodBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-        setUp()
+
         mediaPlayer = MediaPlayer.create(this, R.raw.sound_ingreso)
         mediaPlayer.start()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        setUp()
     }
 
     private fun setUp() {
@@ -56,6 +61,15 @@ class Ingreso : AppCompatActivity() {
 
             if (correo.isNotEmpty() && contrasena.isNotEmpty()) {
                 signInWithEmail(correo, contrasena)
+            }else{
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Error")
+                builder.setMessage("Los campos no estan llenos")
+                builder.setPositiveButton("Aceptar", null)
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+
             }
         }
 
@@ -163,5 +177,10 @@ class Ingreso : AppCompatActivity() {
     suspend fun charge(){
 
         delay(2200)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.release()
     }
 }

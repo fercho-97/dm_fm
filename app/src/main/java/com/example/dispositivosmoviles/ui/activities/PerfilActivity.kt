@@ -34,16 +34,10 @@ class PerfilActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPerfilBinding
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-
-    private lateinit var localitation: FusedLocationProviderClient
-
     private val CAMERA_PERMISSION_REQUEST_CODE = 101
     private val CAMERA_IMAGE_REQUEST_CODE = 102
 
-
     private lateinit var userProvider: ProviderType
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +45,9 @@ class PerfilActivity : AppCompatActivity() {
         binding = ActivityPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val defaultLocale = Locale.getDefault()
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        requestLocationAndShowCity(defaultLocale)
 
         val bundle = intent.extras
         val email = bundle?.getString("email")
@@ -66,8 +63,10 @@ class PerfilActivity : AppCompatActivity() {
         prefs.putString("photoUrl", photoUrl)
         prefs.apply()
 
+    }
 
-
+    override fun onStart() {
+        super.onStart()
         binding.buttonChangePhoto.setOnClickListener {
 
             if (userProvider == ProviderType.BASIC) {
@@ -78,13 +77,16 @@ class PerfilActivity : AppCompatActivity() {
             }
         }
 
-
-
         val defaultLocale = Locale.getDefault()
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         requestLocationAndShowCity(defaultLocale)
-    }
 
+        Glide.with(this)
+            .asGif()
+            .load(R.drawable.gift_pool)
+            .into(binding.imgGift);
+
+    }
 
 
     private fun checkCameraPermission() {
@@ -131,7 +133,6 @@ class PerfilActivity : AppCompatActivity() {
             }
         }
     }
-    //lf@uce.com
 
     private fun requestLocationAndShowCity(locale: Locale) {
         if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -149,6 +150,8 @@ class PerfilActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun getCityName(latitude: Double, longitude: Double, locale: Locale): String {
         val geocoder = Geocoder(this, locale)
         var cityName = ""
@@ -164,8 +167,6 @@ class PerfilActivity : AppCompatActivity() {
         }
         return cityName
     }
-
-
 
 
     private fun setUp(email: String, provider: String, photoUrl: String) {

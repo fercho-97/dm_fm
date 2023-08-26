@@ -28,7 +28,7 @@ class ListItems {fun getData(): List<Datos> {
         Datos(
             "Comic Con Osaka",
             "https://www.bpofexperience.com/src/events/event_1147/editor/thumbnails/ei_CC_Japon-1682740401788_w1024_q80.jpg",
-            "Comic Con Osaka"
+            "Fecha: 10 y 11 de Mayo 2023"
         ),
         Datos(
             "Comic Con Bruselas",
