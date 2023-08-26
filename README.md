@@ -15,7 +15,7 @@
 - Interacción con Usuarios: Muestra mensajes de retroalimentación y notificaciones de manera atractiva y amigable para el usuario.
 - Obtención de Datos de Ubicación: Permite obtener datos de ubicación, como el nombre de la ciudad, a partir de coordenadas geográficas.
 
-###Librerías
+###Libraries
 - Coroutines
 - Firebase
 - Material Design
@@ -28,7 +28,7 @@
 
 ----
 
-###Imágenes
+###Images
 
 [![inicio.jpg](https://i.postimg.cc/WzntGhbS/inicio.jpg)](https://postimg.cc/YLvpk2Fm)
 
